@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!--
+        Privacy Manifest for the Amble main app target.
+
+        Apple introduced this file in iOS 17 and began rejecting
+        submissions that omit it whenever an app uses any
+        "Required Reason APIs" or third-party SDKs. Amble uses
+        UserDefaults (29 call sites across the profile, walks,
+        reflection-position, and review-prompter persistence
+        layers), which is on the Required Reason list — so this
+        file is mandatory for us.
+
+        We deliberately do NOT enumerate collected data types
+        below. The third-party SDK we ship (RevenueCat) declares
+        its own purchase-history collection in its bundled
+        manifest, and Apple aggregates nested manifests at
+        submission time. Everything else the app handles —
+        the user's name, age range, daily goal, walks, emergency
+        contact, HealthKit step count — stays on-device and is
+        therefore not "collected" under Apple's definition
+        (which is "transmitted off the user's device for longer
+        than the request that needed it").
+
+        SOS sends the user's coarse location via SMS through
+        the user's own carrier; we never see it ourselves.
+        The user's matching App Store Connect Privacy
+        questionnaire reflects the same picture in more
+        detail.
+
+        Keep this file in lockstep with the privacy policy
+        hosted at antoniobaltic.xyz/amble-privacy.html — if we
+        ever add an analytics SDK, push-notification server,
+        or any other off-device data flow, both files need to
+        be updated together.
+    -->
+
+    <!-- We do not track users across apps or websites. -->
+    <key>NSPrivacyTracking</key>
+    <false/>
+
+    <!-- No domains in this list because we do not ping any
+         tracking endpoints. RevenueCat's domain is declared in
+         its own bundled manifest. -->
+    <key>NSPrivacyTrackingDomains</key>
+    <array/>
+
+    <!-- We do not transmit personal data off the device from
+         our own code. RevenueCat (third-party SDK) handles its
+         own purchase-history collection and declares it in its
+         own privacy manifest, which Apple aggregates with this
+         one at submission time. -->
+    <key>NSPrivacyCollectedDataTypes</key>
+    <array/>
+
+    <!-- Required Reason API usage. -->
+    <key>NSPrivacyAccessedAPITypes</key>
+    <array>
+        <dict>
+            <!-- UserDefaults: the user's profile, walking history,
+                 reflection position, notification settings, and
+                 review-prompt counters all persist via
+                 UserDefaults. The data is scoped to this app
+                 only — we don't share it via App Groups. -->
+            <key>NSPrivacyAccessedAPIType</key>
+            <string>NSPrivacyAccessedAPICategoryUserDefaults</string>
+            <key>NSPrivacyAccessedAPITypeReasons</key>
+            <array>
+                <!-- 1C8F.1 — "Access user defaults to read and
+                     write information that is only accessible
+                     to the app itself." Exactly our case. -->
+                <string>1C8F.1</string>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!--
+        Privacy Manifest for the AmbleWidgetExtension target.
+
+        The widget extension holds the Live Activity that runs
+        during a tracked walk (Dynamic Island compact / minimal /
+        expanded views, plus the lock-screen card). It receives
+        ContentState updates from the main app via ActivityKit
+        and renders read-only UI from them — it does NOT touch
+        UserDefaults, file metadata, system uptime, disk space,
+        or any other Required Reason API directly.
+
+        It also doesn't transmit anything off the device or
+        contact tracking domains. The shape of this manifest is
+        therefore intentionally minimal: explicit "no" answers
+        to each of Apple's required disclosures.
+
+        If we ever expand the widget extension to read shared
+        UserDefaults via an App Group, push remote-controlled
+        Live Activities, or use any other privacy-impacting
+        API, this file needs the corresponding entry added.
+    -->
+
+    <key>NSPrivacyTracking</key>
+    <false/>
+
+    <key>NSPrivacyTrackingDomains</key>
+    <array/>
+
+    <key>NSPrivacyCollectedDataTypes</key>
+    <array/>
+
+    <key>NSPrivacyAccessedAPITypes</key>
+    <array/>
+</dict>
+</plist>

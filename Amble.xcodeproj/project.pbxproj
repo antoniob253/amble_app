@@ -1,0 +1,887 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D7985D6C1F6DF463E4B5A4B /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59A9CE5C3EA6D11106CF94 /* WeekView.swift */; };
+		0D8309D524BF9E9BE2178D14 /* Amble.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 76DEA362C45280B33481E66E /* Amble.storekit */; };
+		BBC000040000000000E00001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BBC000040000000000F00001 /* PrivacyInfo.xcprivacy */; };
+		0F7AEAAEC750904B3EB2E198 /* Fraunces.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDF87D82E7D9BFE5F31B7150 /* Fraunces.ttf */; };
+		292F977A81DE7690BDA8CD3A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12E74EE96B0B96A3E013141 /* OnboardingView.swift */; };
+		3188C453B93363343FF4DEBE /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157864EDE17913DC5810363 /* SOSView.swift */; };
+		3912D13B43F24AFC9840616A /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74A2352F4725DBAF10FB70E /* Haptics.swift */; };
+		3F413ECE1CF639E358BC3B3B /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB88CEF57AAF78417E4F6F /* ContactPicker.swift */; };
+		53CB444DAD1B593B2ED16EFC /* ScreenShell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D69115628B0709470B66E3C /* ScreenShell.swift */; };
+		5990FC88D4A863F5A96F8655 /* AmbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693675B636609179B7C637D1 /* AmbleApp.swift */; };
+		682B146A26322B489167F98F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22583F48E45F79AD5DDD75F1 /* RootView.swift */; };
+		73523F76337D9FC764A618A5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509AB284F9682FABC5A12405 /* Theme.swift */; };
+		7AE3F6919494ECDDCEB51222 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F196B330762BE9DA62846C8A /* HealthStore.swift */; };
+		7D0B6FEF6E6188A5224508C3 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A6BD3BF26B126CDF5AAA6F /* PaywallView.swift */; };
+		82CE2C77578C22BC613195C8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94B6761F10D64DB46F76DB2 /* HomeView.swift */; };
+		841E0AD0A9A9EE80D1DD607C /* PressableStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5A9D06565A87DEDED1978D /* PressableStyle.swift */; };
+		8B355E99DF491E3387690FB8 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C828AFB37B5F4010132B40 /* ProgressRing.swift */; };
+		91A7E42EF7C3AA342B0E1738 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989D152054C9B25F8B0C05C8 /* TabBar.swift */; };
+		A7FC0838499074517A5F71AB /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB866D1126856FEDFC22D2B2 /* StoreManager.swift */; };
+		A8AA7E5002000000DA7E0001 /* AmbleDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AA7E5001000000DA7E0001 /* AmbleDates.swift */; };
+		A8D2576C2F93FC08000C4967 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D2576B2F93FC08000C4967 /* WidgetKit.framework */; };
+		A8D2576E2F93FC08000C4967 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8D2576D2F93FC08000C4967 /* SwiftUI.framework */; };
+		A8D2577D2F93FC0A000C4967 /* AmbleWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A8D257692F93FC08000C4967 /* AmbleWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A8D257882F93FDD9000C4967 /* WalkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D257872F93FDD9000C4967 /* WalkSession.swift */; };
+		A8D2578A2F93FDE0000C4967 /* WalksStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D257892F93FDE0000C4967 /* WalksStore.swift */; };
+		A8D2578C2F93FDE7000C4967 /* AmbleWalkActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2578B2F93FDE7000C4967 /* AmbleWalkActivityAttributes.swift */; };
+		A8D2578E2F93FDFB000C4967 /* WalkTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2578D2F93FDFB000C4967 /* WalkTracker.swift */; };
+		A8D257902F93FE17000C4967 /* ActiveWalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2578F2F93FE17000C4967 /* ActiveWalkView.swift */; };
+		A8D257912F93FE50000C4967 /* AmbleWalkActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2578B2F93FDE7000C4967 /* AmbleWalkActivityAttributes.swift */; };
+		A8D257A22F940AA2000C4967 /* Encouragement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D257A12F940AA2000C4967 /* Encouragement.swift */; };
+		A8D257A52F9413FF000C4967 /* walker.json in Resources */ = {isa = PBXBuildFile; fileRef = A8D257A42F9412E8000C4967 /* walker.json */; };
+		A8D257F62F942445000C4967 /* WalkEncouragement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D257F52F942445000C4967 /* WalkEncouragement.swift */; };
+		A8D258022F94200000000000 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A8D258012F94200000000000 /* Lottie */; };
+		A8D258092F942A16000C4967 /* reflections.json in Resources */ = {isa = PBXBuildFile; fileRef = A8D258082F942A16000C4967 /* reflections.json */; };
+		A8D2580B2F942A39000C4967 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2580A2F942A39000C4967 /* Reflection.swift */; };
+		A8D2580D2F942B0A000C4967 /* ReflectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2580C2F942B0A000C4967 /* ReflectionsView.swift */; };
+		A8D2580F2F942B3C000C4967 /* CallContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2580E2F942B3C000C4967 /* CallContact.swift */; };
+		A8D258112F953173000C4967 /* WalkAfterglow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D258102F953173000C4967 /* WalkAfterglow.swift */; };
+		AAC6566A24F5D592C443E2EF /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD5FCE9B10F96825571861E /* SettingsView.swift */; };
+		BBC000010000000000A00001 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = BBC000010000000000C00001 /* RevenueCat */; };
+		BBC000020000000000E00001 /* RevenueCatConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC000020000000000F00001 /* RevenueCatConfig.swift */; };
+		BBC000030000000000E00001 /* ReviewPrompter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC000030000000000F00001 /* ReviewPrompter.swift */; };
+		BCDEA934D2501353B4C4CE9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFDBAC21689581B04CB7ABB5 /* Assets.xcassets */; };
+		BFE38D4F80E31AC8C20A677B /* Fraunces-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25383199426D451467A0BB05 /* Fraunces-Italic.ttf */; };
+		C4BBE11154972AFB7236C7C9 /* CallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC532B058CD2BE9519DB399 /* CallView.swift */; };
+		C9E222E516F9E04379610B97 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616EACD367D9D81D62D2F3CC /* UserProfile.swift */; };
+		CAA3D0367DB2EB111473D74D /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF630E21D5C7D386DAA23A /* NotificationManager.swift */; };
+		CE0B87F19BE032C779FBBD9B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85061924FBA43B9B6469CD1C /* LocationManager.swift */; };
+		D1FE4A7C7F1F8D39988A1632 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0C11B86D6195733CB7E0FF /* GoalView.swift */; };
+		DFBC5DFAA58B67AFB7F22757 /* Confetti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A96FD9F8EF4130039D7231 /* Confetti.swift */; };
+		E71CCE43EFED0A612753C604 /* StepperButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522AFA59F533BCEDCE915D96 /* StepperButton.swift */; };
+		F195BC950CD734E4C9F64B04 /* Preview Content in Resources */ = {isa = PBXBuildFile; fileRef = 567E8C8919A274FF0AE1A4E9 /* Preview Content */; };
+		F8605869C5B171BC929D426C /* WalkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206319A45F7931BCA3279E75 /* WalkView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A8D2577B2F93FC0A000C4967 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8D257682F93FC08000C4967;
+			remoteInfo = AmbleWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A8D257822F93FC0A000C4967 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				A8D2577D2F93FC0A000C4967 /* AmbleWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1BD5FCE9B10F96825571861E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1D69115628B0709470B66E3C /* ScreenShell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenShell.swift; sourceTree = "<group>"; };
+		206319A45F7931BCA3279E75 /* WalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkView.swift; sourceTree = "<group>"; };
+		22583F48E45F79AD5DDD75F1 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		25383199426D451467A0BB05 /* Fraunces-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fraunces-Italic.ttf"; sourceTree = "<group>"; };
+		3FB6BD64A997C517BC11CC6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		509AB284F9682FABC5A12405 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		522AFA59F533BCEDCE915D96 /* StepperButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperButton.swift; sourceTree = "<group>"; };
+		567E8C8919A274FF0AE1A4E9 /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
+		616EACD367D9D81D62D2F3CC /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		65A96FD9F8EF4130039D7231 /* Confetti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confetti.swift; sourceTree = "<group>"; };
+		693675B636609179B7C637D1 /* AmbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbleApp.swift; sourceTree = "<group>"; };
+		76DEA362C45280B33481E66E /* Amble.storekit */ = {isa = PBXFileReference; lastKnownFileType = text.json.storekit; path = Amble.storekit; sourceTree = "<group>"; };
+		BBC000040000000000F00001 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		79F9E867BCF70E2D6C307937 /* Amble.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Amble.entitlements; sourceTree = "<group>"; };
+		85061924FBA43B9B6469CD1C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		86FF630E21D5C7D386DAA23A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		9157864EDE17913DC5810363 /* SOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSView.swift; sourceTree = "<group>"; };
+		989D152054C9B25F8B0C05C8 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		A3A6BD3BF26B126CDF5AAA6F /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		A8AA7E5001000000DA7E0001 /* AmbleDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbleDates.swift; sourceTree = "<group>"; };
+		A8D257692F93FC08000C4967 /* AmbleWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AmbleWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8D2576B2F93FC08000C4967 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A8D2576D2F93FC08000C4967 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A8D257872F93FDD9000C4967 /* WalkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkSession.swift; sourceTree = "<group>"; };
+		A8D257892F93FDE0000C4967 /* WalksStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalksStore.swift; sourceTree = "<group>"; };
+		A8D2578B2F93FDE7000C4967 /* AmbleWalkActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbleWalkActivityAttributes.swift; sourceTree = "<group>"; };
+		A8D2578D2F93FDFB000C4967 /* WalkTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkTracker.swift; sourceTree = "<group>"; };
+		A8D2578F2F93FE17000C4967 /* ActiveWalkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWalkView.swift; sourceTree = "<group>"; };
+		A8D257A12F940AA2000C4967 /* Encouragement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encouragement.swift; sourceTree = "<group>"; };
+		A8D257A42F9412E8000C4967 /* walker.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = walker.json; sourceTree = "<group>"; };
+		A8D257F52F942445000C4967 /* WalkEncouragement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkEncouragement.swift; sourceTree = "<group>"; };
+		A8D258082F942A16000C4967 /* reflections.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = reflections.json; sourceTree = "<group>"; };
+		A8D2580A2F942A39000C4967 /* Reflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
+		A8D2580C2F942B0A000C4967 /* ReflectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectionsView.swift; sourceTree = "<group>"; };
+		A8D2580E2F942B3C000C4967 /* CallContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallContact.swift; sourceTree = "<group>"; };
+		A8D258102F953173000C4967 /* WalkAfterglow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkAfterglow.swift; sourceTree = "<group>"; };
+		AB866D1126856FEDFC22D2B2 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		AEF63687048485D45524643C /* Amble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amble.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBC000020000000000F00001 /* RevenueCatConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatConfig.swift; sourceTree = "<group>"; };
+		BBC000030000000000F00001 /* ReviewPrompter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPrompter.swift; sourceTree = "<group>"; };
+		C0C828AFB37B5F4010132B40 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
+		CD0C11B86D6195733CB7E0FF /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
+		CD59A9CE5C3EA6D11106CF94 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
+		CDF87D82E7D9BFE5F31B7150 /* Fraunces.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fraunces.ttf; sourceTree = "<group>"; };
+		CFDBAC21689581B04CB7ABB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D12E74EE96B0B96A3E013141 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		D9EB88CEF57AAF78417E4F6F /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
+		DE5A9D06565A87DEDED1978D /* PressableStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressableStyle.swift; sourceTree = "<group>"; };
+		F196B330762BE9DA62846C8A /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
+		F74A2352F4725DBAF10FB70E /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		F94B6761F10D64DB46F76DB2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FBC532B058CD2BE9519DB399 /* CallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A8D2577E2F93FC0A000C4967 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A8D257682F93FC08000C4967 /* AmbleWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A8D2576F2F93FC08000C4967 /* AmbleWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (A8D2577E2F93FC0A000C4967 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = AmbleWidget; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B8633C7EB6F5CB13673C25D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8D258022F94200000000000 /* Lottie in Frameworks */,
+				BBC000010000000000A00001 /* RevenueCat in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8D257662F93FC08000C4967 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8D2576E2F93FC08000C4967 /* SwiftUI.framework in Frameworks */,
+				A8D2576C2F93FC08000C4967 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		001CF24A30A36D035978DD51 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				F74A2352F4725DBAF10FB70E /* Haptics.swift */,
+			);
+			path = Haptics;
+			sourceTree = "<group>";
+		};
+		021F2B7F3E0C61452C987484 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEF63687048485D45524643C /* Amble.app */,
+				A8D257692F93FC08000C4967 /* AmbleWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26854CC0EF5F453B68AB48C7 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				85061924FBA43B9B6469CD1C /* LocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		4ACEE3D9AAF2685CA995A468 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				509AB284F9682FABC5A12405 /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		54FE5E34995DE10F87DF7B85 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C0C828AFB37B5F4010132B40 /* ProgressRing.swift */,
+				DE5A9D06565A87DEDED1978D /* PressableStyle.swift */,
+				989D152054C9B25F8B0C05C8 /* TabBar.swift */,
+				1D69115628B0709470B66E3C /* ScreenShell.swift */,
+				522AFA59F533BCEDCE915D96 /* StepperButton.swift */,
+				65A96FD9F8EF4130039D7231 /* Confetti.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		62CBA1112DC493DD921BA2C2 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D12E74EE96B0B96A3E013141 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		81E99957DBFD4197173FDF4D /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				86FF630E21D5C7D386DAA23A /* NotificationManager.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		9280D59085B3F544BB4B9A5D /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				AB866D1126856FEDFC22D2B2 /* StoreManager.swift */,
+				BBC000020000000000F00001 /* RevenueCatConfig.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		9626E91D297E706EC1030686 /* Amble */ = {
+			isa = PBXGroup;
+			children = (
+				693675B636609179B7C637D1 /* AmbleApp.swift */,
+				4ACEE3D9AAF2685CA995A468 /* Theme */,
+				001CF24A30A36D035978DD51 /* Haptics */,
+				D622E3C76CF120B220155ED9 /* Health */,
+				9280D59085B3F544BB4B9A5D /* Store */,
+				BF657CFE8769AAE6C0570C29 /* Models */,
+				E9DE9457A7ABD9D3F50F8643 /* Contacts */,
+				26854CC0EF5F453B68AB48C7 /* Location */,
+				81E99957DBFD4197173FDF4D /* Notifications */,
+				54FE5E34995DE10F87DF7B85 /* Components */,
+				62CBA1112DC493DD921BA2C2 /* Onboarding */,
+				D61F0ED9BCD8264F492454E8 /* Screens */,
+				A8D257A32F9412B4000C4967 /* Lottie */,
+				A8D257F72F942916000C4967 /* Reflections */,
+				CFDBAC21689581B04CB7ABB5 /* Assets.xcassets */,
+				567E8C8919A274FF0AE1A4E9 /* Preview Content */,
+				76DEA362C45280B33481E66E /* Amble.storekit */,
+				CDF87D82E7D9BFE5F31B7150 /* Fraunces.ttf */,
+				25383199426D451467A0BB05 /* Fraunces-Italic.ttf */,
+				3FB6BD64A997C517BC11CC6E /* Info.plist */,
+				79F9E867BCF70E2D6C307937 /* Amble.entitlements */,
+				BBC000040000000000F00001 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Amble;
+			sourceTree = "<group>";
+		};
+		A8D2576A2F93FC08000C4967 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8D2576B2F93FC08000C4967 /* WidgetKit.framework */,
+				A8D2576D2F93FC08000C4967 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A8D257A32F9412B4000C4967 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				A8D257A42F9412E8000C4967 /* walker.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
+		A8D257F72F942916000C4967 /* Reflections */ = {
+			isa = PBXGroup;
+			children = (
+				A8D258082F942A16000C4967 /* reflections.json */,
+			);
+			path = Reflections;
+			sourceTree = "<group>";
+		};
+		BF657CFE8769AAE6C0570C29 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				616EACD367D9D81D62D2F3CC /* UserProfile.swift */,
+				A8D257872F93FDD9000C4967 /* WalkSession.swift */,
+				A8D257892F93FDE0000C4967 /* WalksStore.swift */,
+				A8D2578B2F93FDE7000C4967 /* AmbleWalkActivityAttributes.swift */,
+				A8D2578D2F93FDFB000C4967 /* WalkTracker.swift */,
+				A8D257A12F940AA2000C4967 /* Encouragement.swift */,
+				A8D257F52F942445000C4967 /* WalkEncouragement.swift */,
+				A8D2580A2F942A39000C4967 /* Reflection.swift */,
+				A8D2580E2F942B3C000C4967 /* CallContact.swift */,
+				A8D258102F953173000C4967 /* WalkAfterglow.swift */,
+				A8AA7E5001000000DA7E0001 /* AmbleDates.swift */,
+				BBC000030000000000F00001 /* ReviewPrompter.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D61F0ED9BCD8264F492454E8 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				F94B6761F10D64DB46F76DB2 /* HomeView.swift */,
+				CD59A9CE5C3EA6D11106CF94 /* WeekView.swift */,
+				CD0C11B86D6195733CB7E0FF /* GoalView.swift */,
+				206319A45F7931BCA3279E75 /* WalkView.swift */,
+				FBC532B058CD2BE9519DB399 /* CallView.swift */,
+				9157864EDE17913DC5810363 /* SOSView.swift */,
+				1BD5FCE9B10F96825571861E /* SettingsView.swift */,
+				A3A6BD3BF26B126CDF5AAA6F /* PaywallView.swift */,
+				22583F48E45F79AD5DDD75F1 /* RootView.swift */,
+				A8D2578F2F93FE17000C4967 /* ActiveWalkView.swift */,
+				A8D2580C2F942B0A000C4967 /* ReflectionsView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		D622E3C76CF120B220155ED9 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				F196B330762BE9DA62846C8A /* HealthStore.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		E9DE9457A7ABD9D3F50F8643 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				D9EB88CEF57AAF78417E4F6F /* ContactPicker.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		EDA6D6223944636B9C5B54AA = {
+			isa = PBXGroup;
+			children = (
+				9626E91D297E706EC1030686 /* Amble */,
+				A8D2576F2F93FC08000C4967 /* AmbleWidget */,
+				A8D2576A2F93FC08000C4967 /* Frameworks */,
+				021F2B7F3E0C61452C987484 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0E8A3AD980EC179856012B7E /* Amble */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59B0A5CE57B81515E37D4159 /* Build configuration list for PBXNativeTarget "Amble" */;
+			buildPhases = (
+				E4F78730D65EE9F55E2BAC2F /* Sources */,
+				7B8633C7EB6F5CB13673C25D /* Frameworks */,
+				C52ABA055DA4D0050382EB56 /* Resources */,
+				A8D257822F93FC0A000C4967 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A8D2577C2F93FC0A000C4967 /* PBXTargetDependency */,
+			);
+			name = Amble;
+			packageProductDependencies = (
+				A8D258012F94200000000000 /* Lottie */,
+				BBC000010000000000C00001 /* RevenueCat */,
+			);
+			productName = Amble;
+			productReference = AEF63687048485D45524643C /* Amble.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A8D257682F93FC08000C4967 /* AmbleWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8D2577F2F93FC0A000C4967 /* Build configuration list for PBXNativeTarget "AmbleWidgetExtension" */;
+			buildPhases = (
+				A8D257652F93FC08000C4967 /* Sources */,
+				A8D257662F93FC08000C4967 /* Frameworks */,
+				A8D257672F93FC08000C4967 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A8D2576F2F93FC08000C4967 /* AmbleWidget */,
+			);
+			name = AmbleWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = AmbleWidgetExtension;
+			productReference = A8D257692F93FC08000C4967 /* AmbleWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98F54143AB4E86B28C3AFEE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2640;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					0E8A3AD980EC179856012B7E = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					A8D257682F93FC08000C4967 = {
+						CreatedOnToolsVersion = 26.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 501BE022D29B3F8395337392 /* Build configuration list for PBXProject "Amble" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EDA6D6223944636B9C5B54AA;
+			packageReferences = (
+				A8D258002F94200000000000 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				BBC000010000000000B00001 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+			);
+			productRefGroup = 021F2B7F3E0C61452C987484 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0E8A3AD980EC179856012B7E /* Amble */,
+				A8D257682F93FC08000C4967 /* AmbleWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A8D257672F93FC08000C4967 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C52ABA055DA4D0050382EB56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCDEA934D2501353B4C4CE9F /* Assets.xcassets in Resources */,
+				F195BC950CD734E4C9F64B04 /* Preview Content in Resources */,
+				0D8309D524BF9E9BE2178D14 /* Amble.storekit in Resources */,
+				0F7AEAAEC750904B3EB2E198 /* Fraunces.ttf in Resources */,
+				BBC000040000000000E00001 /* PrivacyInfo.xcprivacy in Resources */,
+				BFE38D4F80E31AC8C20A677B /* Fraunces-Italic.ttf in Resources */,
+				A8D257A52F9413FF000C4967 /* walker.json in Resources */,
+				A8D258092F942A16000C4967 /* reflections.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A8D257652F93FC08000C4967 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8D257912F93FE50000C4967 /* AmbleWalkActivityAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4F78730D65EE9F55E2BAC2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5990FC88D4A863F5A96F8655 /* AmbleApp.swift in Sources */,
+				73523F76337D9FC764A618A5 /* Theme.swift in Sources */,
+				3912D13B43F24AFC9840616A /* Haptics.swift in Sources */,
+				A8D2580B2F942A39000C4967 /* Reflection.swift in Sources */,
+				BBC000030000000000E00001 /* ReviewPrompter.swift in Sources */,
+				A8AA7E5002000000DA7E0001 /* AmbleDates.swift in Sources */,
+				7AE3F6919494ECDDCEB51222 /* HealthStore.swift in Sources */,
+				A7FC0838499074517A5F71AB /* StoreManager.swift in Sources */,
+				BBC000020000000000E00001 /* RevenueCatConfig.swift in Sources */,
+				C9E222E516F9E04379610B97 /* UserProfile.swift in Sources */,
+				3F413ECE1CF639E358BC3B3B /* ContactPicker.swift in Sources */,
+				CE0B87F19BE032C779FBBD9B /* LocationManager.swift in Sources */,
+				CAA3D0367DB2EB111473D74D /* NotificationManager.swift in Sources */,
+				8B355E99DF491E3387690FB8 /* ProgressRing.swift in Sources */,
+				841E0AD0A9A9EE80D1DD607C /* PressableStyle.swift in Sources */,
+				91A7E42EF7C3AA342B0E1738 /* TabBar.swift in Sources */,
+				53CB444DAD1B593B2ED16EFC /* ScreenShell.swift in Sources */,
+				E71CCE43EFED0A612753C604 /* StepperButton.swift in Sources */,
+				DFBC5DFAA58B67AFB7F22757 /* Confetti.swift in Sources */,
+				A8D258112F953173000C4967 /* WalkAfterglow.swift in Sources */,
+				292F977A81DE7690BDA8CD3A /* OnboardingView.swift in Sources */,
+				A8D2578A2F93FDE0000C4967 /* WalksStore.swift in Sources */,
+				A8D2580F2F942B3C000C4967 /* CallContact.swift in Sources */,
+				A8D257A22F940AA2000C4967 /* Encouragement.swift in Sources */,
+				82CE2C77578C22BC613195C8 /* HomeView.swift in Sources */,
+				0D7985D6C1F6DF463E4B5A4B /* WeekView.swift in Sources */,
+				D1FE4A7C7F1F8D39988A1632 /* GoalView.swift in Sources */,
+				A8D257902F93FE17000C4967 /* ActiveWalkView.swift in Sources */,
+				F8605869C5B171BC929D426C /* WalkView.swift in Sources */,
+				A8D2578E2F93FDFB000C4967 /* WalkTracker.swift in Sources */,
+				A8D2578C2F93FDE7000C4967 /* AmbleWalkActivityAttributes.swift in Sources */,
+				C4BBE11154972AFB7236C7C9 /* CallView.swift in Sources */,
+				A8D257F62F942445000C4967 /* WalkEncouragement.swift in Sources */,
+				A8D257882F93FDD9000C4967 /* WalkSession.swift in Sources */,
+				3188C453B93363343FF4DEBE /* SOSView.swift in Sources */,
+				AAC6566A24F5D592C443E2EF /* SettingsView.swift in Sources */,
+				A8D2580D2F942B0A000C4967 /* ReflectionsView.swift in Sources */,
+				7D0B6FEF6E6188A5224508C3 /* PaywallView.swift in Sources */,
+				682B146A26322B489167F98F /* RootView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A8D2577C2F93FC0A000C4967 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8D257682F93FC08000C4967 /* AmbleWidgetExtension */;
+			targetProxy = A8D2577B2F93FC0A000C4967 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		36928E866C7C1B8CAE129E83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Amble/Amble.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Amble/Preview Content\"";
+				DEVELOPMENT_TEAM = 7Z862J5PAH;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Amble/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Amble;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antoniobaltic.amble;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		A8D257802F93FC0A000C4967 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7Z862J5PAH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AmbleWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AmbleWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antoniobaltic.amble.AmbleWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A8D257812F93FC0A000C4967 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7Z862J5PAH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AmbleWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AmbleWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antoniobaltic.amble.AmbleWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		AD454B32373450253FBB4F34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BE7D56203CB095E98DA1B919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Amble/Amble.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Amble/Preview Content\"";
+				DEVELOPMENT_TEAM = 7Z862J5PAH;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Amble/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Amble;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antoniobaltic.amble;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		C214CB3C2292D7DA7B5BC5BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		501BE022D29B3F8395337392 /* Build configuration list for PBXProject "Amble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C214CB3C2292D7DA7B5BC5BD /* Debug */,
+				AD454B32373450253FBB4F34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59B0A5CE57B81515E37D4159 /* Build configuration list for PBXNativeTarget "Amble" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE7D56203CB095E98DA1B919 /* Debug */,
+				36928E866C7C1B8CAE129E83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8D2577F2F93FC0A000C4967 /* Build configuration list for PBXNativeTarget "AmbleWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8D257802F93FC0A000C4967 /* Debug */,
+				A8D257812F93FC0A000C4967 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A8D258002F94200000000000 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+		BBC000010000000000B00001 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A8D258012F94200000000000 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A8D258002F94200000000000 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		BBC000010000000000C00001 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BBC000010000000000B00001 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = RevenueCat;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+}

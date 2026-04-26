@@ -1,0 +1,29 @@
+# Xcode
+build/
+DerivedData/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/configuration/
+*.xcuserstate
+
+# Swift Package Manager
+.swiftpm/
+Package.resolved
+.build/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Local working files
+amble_state.rtf
+
+# Misc / editors
+*.swp
+*.swo
+.idea/
+.vscode/
