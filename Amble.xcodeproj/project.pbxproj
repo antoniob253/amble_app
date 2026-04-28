@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0D7985D6C1F6DF463E4B5A4B /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD59A9CE5C3EA6D11106CF94 /* WeekView.swift */; };
 		0D8309D524BF9E9BE2178D14 /* Amble.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 76DEA362C45280B33481E66E /* Amble.storekit */; };
-		BBC000040000000000E00001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BBC000040000000000F00001 /* PrivacyInfo.xcprivacy */; };
 		0F7AEAAEC750904B3EB2E198 /* Fraunces.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDF87D82E7D9BFE5F31B7150 /* Fraunces.ttf */; };
 		292F977A81DE7690BDA8CD3A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12E74EE96B0B96A3E013141 /* OnboardingView.swift */; };
 		3188C453B93363343FF4DEBE /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157864EDE17913DC5810363 /* SOSView.swift */; };
@@ -49,6 +48,7 @@
 		BBC000010000000000A00001 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = BBC000010000000000C00001 /* RevenueCat */; };
 		BBC000020000000000E00001 /* RevenueCatConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC000020000000000F00001 /* RevenueCatConfig.swift */; };
 		BBC000030000000000E00001 /* ReviewPrompter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC000030000000000F00001 /* ReviewPrompter.swift */; };
+		BBC000040000000000E00001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BBC000040000000000F00001 /* PrivacyInfo.xcprivacy */; };
 		BCDEA934D2501353B4C4CE9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFDBAC21689581B04CB7ABB5 /* Assets.xcassets */; };
 		BFE38D4F80E31AC8C20A677B /* Fraunces-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25383199426D451467A0BB05 /* Fraunces-Italic.ttf */; };
 		C4BBE11154972AFB7236C7C9 /* CallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC532B058CD2BE9519DB399 /* CallView.swift */; };
@@ -100,7 +100,6 @@
 		65A96FD9F8EF4130039D7231 /* Confetti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confetti.swift; sourceTree = "<group>"; };
 		693675B636609179B7C637D1 /* AmbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbleApp.swift; sourceTree = "<group>"; };
 		76DEA362C45280B33481E66E /* Amble.storekit */ = {isa = PBXFileReference; lastKnownFileType = text.json.storekit; path = Amble.storekit; sourceTree = "<group>"; };
-		BBC000040000000000F00001 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		79F9E867BCF70E2D6C307937 /* Amble.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Amble.entitlements; sourceTree = "<group>"; };
 		85061924FBA43B9B6469CD1C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		86FF630E21D5C7D386DAA23A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		AEF63687048485D45524643C /* Amble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBC000020000000000F00001 /* RevenueCatConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueCatConfig.swift; sourceTree = "<group>"; };
 		BBC000030000000000F00001 /* ReviewPrompter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPrompter.swift; sourceTree = "<group>"; };
+		BBC000040000000000F00001 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		C0C828AFB37B5F4010132B40 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
 		CD0C11B86D6195733CB7E0FF /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
 		CD59A9CE5C3EA6D11106CF94 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
@@ -553,9 +553,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Amble/Amble.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Amble/Preview Content\"";
-				DEVELOPMENT_TEAM = 7Z862J5PAH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Amble/Info.plist;
@@ -590,8 +589,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7Z862J5PAH;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AmbleWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AmbleWidget;
@@ -625,8 +623,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7Z862J5PAH;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AmbleWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AmbleWidget;
@@ -689,6 +686,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7Z862J5PAH;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -721,9 +719,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Amble/Amble.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Amble/Preview Content\"";
-				DEVELOPMENT_TEAM = 7Z862J5PAH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Amble/Info.plist;
@@ -787,6 +784,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7Z862J5PAH;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;

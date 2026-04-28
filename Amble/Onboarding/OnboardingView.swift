@@ -152,12 +152,11 @@ struct OnboardingView: View {
                                      location: location,
                                      contactFirstName: s.contactName
                                          .components(separatedBy: " ").first ?? "",
-                                     contactRole: s.contactRole,
-                                     onSkip: skip)
+                                     contactRole: s.contactRole)
         case .health:   StepHealth(palette: palette, type: type, scale: scale,
-                                   health: health, onSkip: skip)
+                                   health: health)
         case .notify:   StepNotify(palette: palette, type: type, scale: scale,
-                                   notifications: notifications, onSkip: skip)
+                                   notifications: notifications)
         case .done:     StepDone(state: s, palette: palette, type: type, scale: scale)
         case .paywall:  StepPaywall(state: s, palette: palette, type: type, scale: scale,
                                     store: store, onFinish: finish)
@@ -171,9 +170,19 @@ struct OnboardingView: View {
             switch s.step {
             case .welcome:  return "Get started"
             case .contact:  return "Continue"
-            case .location: return location.isDetermined ? "Continue" : "Share my location"
-            case .health:   return health.authorizationDetermined ? "Continue" : "Share my steps"
-            case .notify:   return notifications.authorized ? "Continue" : "Yes, please"
+            // Permission priming steps: always "Continue" regardless
+            // of the determination state. Apple App Review (Submission
+            // 98bfe2fa, April 28 2026) flagged the previous "Share my
+            // steps" / "Share my location" / "Yes, please" labels —
+            // combined with the "Maybe later" skip option below — as
+            // pre-empting the user's permission decision in our own
+            // UI before the iOS system dialog. Plain "Continue" is
+            // neutral, iOS-standard, and lets the brand voice live
+            // in the screen explainer text above the button rather
+            // than on the CTA itself.
+            case .location: return "Continue"
+            case .health:   return "Continue"
+            case .notify:   return "Continue"
             case .done:    return "Almost done"
             case .paywall: return store.hasAccess ? "Start walking" : "Start 7-day free trial"
             default:       return "Continue"
@@ -279,13 +288,6 @@ struct OnboardingView: View {
                 s.step = next
             }
         }
-    }
-
-    /// Used by the permission steps as a "Maybe later" escape — advances
-    /// without triggering the permission prompt.
-    private func skip() {
-        Haptics.tap()
-        advanceStep()
     }
 
     private func finish() {
@@ -1208,7 +1210,6 @@ private struct StepLocation: View {
     /// step. Used to infer a gendered pronoun for the subtitle when the role
     /// makes the gender unambiguous; otherwise we fall back to singular-they.
     let contactRole: String
-    let onSkip: () -> Void
 
     private var granted: Bool { location.isAuthorized }
     private var determined: Bool { location.isDetermined }
@@ -1250,11 +1251,14 @@ private struct StepLocation: View {
             .background(RoundedRectangle(cornerRadius: 18, style: .continuous).fill(palette.card))
 
             Spacer()
-
-            if !determined {
-                SkipLink(label: "Maybe later", palette: palette, type: type, scale: scale, action: onSkip)
-                    .padding(.bottom, 4)
-            }
+            // "Maybe later" skip option removed per App Review feedback
+            // (Apple Submission 98bfe2fa, Apr 28 2026, Guideline
+            // 5.1.1(iv)). After the priming explainer the user must
+            // always proceed to the iOS system permission dialog —
+            // they can deny it there. Recovery affordances exist
+            // post-onboarding (the "Allow step tracking" home card,
+            // the location-denied row in Settings) for users who
+            // declined and later changed their mind.
         }
     }
 
@@ -1278,7 +1282,6 @@ private struct StepHealth: View {
     let type: Typography
     let scale: Double
     let health: HealthStore
-    let onSkip: () -> Void
 
     /// Re-read on each appearance so the checkmarks reflect the user's
     /// choice after they return from the iOS permission dialogs.
@@ -1354,11 +1357,8 @@ private struct StepHealth: View {
             .background(RoundedRectangle(cornerRadius: 18, style: .continuous).fill(palette.card))
 
             Spacer()
-
-            if !allGranted {
-                SkipLink(label: "Maybe later", palette: palette, type: type, scale: scale, action: onSkip)
-                    .padding(.bottom, 4)
-            }
+            // "Maybe later" skip option removed per App Review
+            // feedback. See StepLocation comment for context.
         }
         .onAppear { refreshMotionStatus() }
         // Re-check when HealthKit auth state flips — the two dialogs appear
@@ -1374,7 +1374,6 @@ private struct StepNotify: View {
     let type: Typography
     let scale: Double
     let notifications: NotificationManager
-    let onSkip: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -1413,11 +1412,8 @@ private struct StepNotify: View {
             .background(RoundedRectangle(cornerRadius: 18, style: .continuous).fill(palette.card))
 
             Spacer()
-
-            if !notifications.authorized {
-                SkipLink(label: "Maybe later", palette: palette, type: type, scale: scale, action: onSkip)
-                    .padding(.bottom, 4)
-            }
+            // "Maybe later" skip option removed per App Review
+            // feedback. See StepLocation comment for context.
         }
     }
 }
@@ -1440,28 +1436,6 @@ private struct IconBadge: View {
     }
 }
 
-private struct SkipLink: View {
-    let label: String
-    let palette: Palette
-    let type: Typography
-    let scale: Double
-    let action: () -> Void
-
-    var body: some View {
-        HStack {
-            Spacer()
-            Button(action: action) {
-                Text(label)
-                    .font(type.body(16 * scale, weight: .semibold))
-                    .foregroundStyle(palette.ink2)
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 14)
-            }
-            .buttonStyle(.pressable)
-            Spacer()
-        }
-    }
-}
 
 // MARK: Step — Done
 // Renders the closing sentence with "Amble" in the display (Fraunces)
