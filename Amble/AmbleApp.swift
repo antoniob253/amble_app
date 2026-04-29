@@ -34,6 +34,33 @@ struct AmbleApp: App {
             Purchases.logLevel = .info
             #endif
             Purchases.configure(withAPIKey: RevenueCatConfig.apiKey)
+
+            // Apple Search Ads (Apple Ads) attribution. The
+            // RevenueCat SDK does not enable this by default — we
+            // have to opt in explicitly by calling this method
+            // after `Purchases.configure(...)`. Once enabled, the
+            // SDK fetches Apple's privacy-preserving AdServices
+            // attribution token at first launch and forwards it to
+            // RevenueCat's backend, which attributes downstream
+            // subscription events (trial starts, paid conversions,
+            // renewals, churn) to the Apple Ads campaign and
+            // keyword that drove the install.
+            //
+            // This is the metric that matters for measuring ASA
+            // ROI — Apple's own ads dashboard only reports
+            // installs / CPI; cost-per-paying-subscriber lives in
+            // RevenueCat's charts once this attribution is wired
+            // up. Token collection takes up to 7 days to fully
+            // propagate after a user installs.
+            //
+            // Privacy note: AdServices is Apple's own framework,
+            // not a third-party tracker. It does NOT require an
+            // ATT (App Tracking Transparency) prompt and does NOT
+            // count as "tracking" under Apple's privacy
+            // definitions. Our PrivacyInfo.xcprivacy and App Store
+            // Connect privacy questionnaire don't need updating
+            // for this addition.
+            Purchases.shared.attribution.enableAdServicesAttributionTokenCollection()
         }
     }
 
