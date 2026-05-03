@@ -247,7 +247,7 @@ struct RootView: View {
                 isInTrial: store.isInTrial,
                 trialDaysRemaining: store.trialDaysRemaining,
                 expirationDate: store.expirationDate,
-                priceDisplay: store.priceDisplay,
+                priceDisplay: store.annualPrice,
                 onOpenGoal: { route.append(.goal) },
                 onRestart: { profile.reset() },
                 onStartPurchase: { showPaywall = true },

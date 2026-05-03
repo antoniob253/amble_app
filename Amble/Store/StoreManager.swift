@@ -97,12 +97,24 @@ final class StoreManager {
 
     /// The annual package surfaced to the user. Pulled from the
     /// "current" offering in the RevenueCat dashboard at load time.
-    /// We don't enforce a specific package identifier here so the
-    /// dashboard can rename / re-tier the offering without a code
-    /// change — we just ask for whichever package RC marks as
-    /// `.annual`, falling back to the first package if the offering
-    /// doesn't expose an annual slot.
-    private(set) var package: Package?
+    /// We resolve via RevenueCat's canonical `.annual` slot rather
+    /// than a specific package identifier so the dashboard can
+    /// rename / re-tier the offering without a code change.
+    ///
+    /// The yearly product is configured in App Store Connect WITH a
+    /// 7-day introductory free trial; the offer applies to the
+    /// user's first eligible purchase per Apple's per-subscription-
+    /// group rules.
+    private(set) var annualPackage: Package?
+
+    /// The monthly package, added in the v1.0.2 / paywall A-B test
+    /// to give price-conscious users a smaller commitment than the
+    /// $24.99/yr commit. Resolved via RevenueCat's canonical
+    /// `.monthly` slot. NO introductory offer in App Store Connect —
+    /// monthly users go straight to paid. Putting a trial on both
+    /// products in the same subscription group would just duplicate
+    /// the offer Apple already gates to one redemption per user.
+    private(set) var monthlyPackage: Package?
 
     /// `true` while a purchase is in flight. Drives the button label
     /// ("Processing...") and disables tap-through.
@@ -167,28 +179,54 @@ final class StoreManager {
         return Int((secondsRemaining / 86_400).rounded(.up))
     }
 
-    /// Localised price string for the annual package, with a sane
-    /// fallback used before the RevenueCat product fetch returns (and
-    /// in unconfigured / failure modes). Fallback matches our App
-    /// Store Connect base price ($24.99/year) so users on a slow
-    /// connection see the correct number even before products load.
-    var priceDisplay: String {
-        package?.storeProduct.localizedPriceString ?? "$24.99"
+    /// Localised price for the YEARLY package (e.g. "$24.99").
+    /// Fallback matches App Store Connect's base price so users on
+    /// a slow connection see the correct number even before the
+    /// RevenueCat fetch returns.
+    var annualPrice: String {
+        annualPackage?.storeProduct.localizedPriceString ?? "$24.99"
     }
 
-    /// "$2.08 a month" style price for marketing copy (annual / 12).
-    /// Reuses the StoreProduct's own price formatter end-to-end so
-    /// every locale-specific quirk (currency code position, decimal
-    /// separator, grouping) matches the storefront the user sees in
-    /// the StoreKit sheet. Fallback ($2.08) is $24.99 / 12 to match
-    /// the priceDisplay fallback.
-    var monthlyEquivalent: String {
-        guard let product = package?.storeProduct else { return "$2.08" }
+    /// Localised price for the MONTHLY package (e.g. "$2.99").
+    /// Same fallback rationale as `annualPrice`.
+    var monthlyPrice: String {
+        monthlyPackage?.storeProduct.localizedPriceString ?? "$2.99"
+    }
+
+    /// "About $2.08 a month" — the *equivalent* monthly cost of the
+    /// annual plan (annual / 12). Distinct from `monthlyPrice`
+    /// (which is the actual monthly product, $2.99). We use this
+    /// in the yearly card's secondary copy to make the yearly look
+    /// like the better deal next to the standalone monthly.
+    /// Reuses the StoreProduct's own price formatter so locale
+    /// quirks (currency position, decimal separator) match the
+    /// storefront the user sees in the StoreKit sheet.
+    var annualMonthlyEquivalent: String {
+        guard let product = annualPackage?.storeProduct else { return "$2.08" }
         let monthly = NSDecimalNumber(decimal: product.price / 12)
         guard let formatter = product.priceFormatter,
               let formatted = formatter.string(from: monthly)
         else { return "$2.08" }
         return formatted
+    }
+
+    /// "Save 30%" style discount label for the yearly card relative
+    /// to twelve months at the monthly price. Returns nil if either
+    /// product hasn't loaded yet, or if the math doesn't show a
+    /// meaningful saving (>= 5%) — small differences would read as
+    /// a marketing lie. With $24.99/yr vs $2.99/mo × 12 = $35.88,
+    /// the saving is ~30%, well above the threshold.
+    var yearlyDiscountLabel: String? {
+        guard let yearly = annualPackage?.storeProduct.price,
+              let monthly = monthlyPackage?.storeProduct.price,
+              monthly > 0
+        else { return nil }
+        let twelveMonths = monthly * 12
+        guard twelveMonths > yearly else { return nil }
+        let saving = (twelveMonths - yearly) / twelveMonths
+        let percent = (saving as NSDecimalNumber).doubleValue * 100
+        guard percent >= 5 else { return nil }
+        return "Save \(Int(percent.rounded()))%"
     }
 
     init() {
@@ -229,27 +267,44 @@ final class StoreManager {
         loaded = true
     }
 
-    /// Drives the paywall purchase button. Returns a `PurchaseOutcome`
-    /// the caller can branch on so cancellation isn't conflated with
-    /// real failures. Never throws — RC errors are folded into
-    /// `.failed`.
+    /// Plan the user is about to buy. Lets the paywall pass intent
+    /// rather than the raw RevenueCat `Package`, so call sites stay
+    /// readable and the `purchase` call doesn't need to import
+    /// `RevenueCat`.
+    enum PurchasePlan {
+        case annual
+        case monthly
+    }
+
+    /// Drives the paywall purchase buttons. Pick which plan via
+    /// `PurchasePlan`. Returns a `PurchaseOutcome` the caller can
+    /// branch on so cancellation isn't conflated with real failures.
+    /// Never throws — RC errors are folded into `.failed`.
     ///
     /// Re-entry safe: if a purchase is already in flight we drop the
-    /// extra call instead of letting two StoreKit sheets race.
-    /// Self-healing: if `package` is nil because the initial
-    /// `load()` couldn't reach RevenueCat (e.g. cold-launch on a
-    /// flaky network), we retry the offering fetch here on demand
-    /// before declaring failure — without this retry, a single
-    /// dropped network packet could permanently strand the user on
-    /// the onboarding paywall until they killed the app.
-    func purchase() async -> PurchaseOutcome {
+    /// extra call instead of letting two StoreKit sheets race. Two
+    /// rapid taps on the yearly button OR one tap on yearly followed
+    /// by a tap on monthly both end up in the same single-flight
+    /// guard.
+    ///
+    /// Self-healing: if the requested package is nil because the
+    /// initial `load()` couldn't reach RevenueCat (e.g. cold-launch
+    /// on a flaky network), we retry the offering fetch here on
+    /// demand before declaring failure — without this retry, a
+    /// single dropped network packet could permanently strand the
+    /// user on the onboarding paywall until they killed the app.
+    func purchase(_ plan: PurchasePlan) async -> PurchaseOutcome {
         guard !purchasing else { return .failed }
         guard Purchases.isConfigured else { return .failed }
 
-        if package == nil {
+        // Pick the package by intent. If the requested one is nil,
+        // fetch and try again before bailing.
+        var pkg: Package? = packageFor(plan)
+        if pkg == nil {
             await fetchOffering()
+            pkg = packageFor(plan)
         }
-        guard let package else { return .failed }
+        guard let package = pkg else { return .failed }
 
         purchasing = true
         defer { purchasing = false }
@@ -275,6 +330,16 @@ final class StoreManager {
             return .failed
         } catch {
             return .failed
+        }
+    }
+
+    /// Maps a `PurchasePlan` to the corresponding RevenueCat package.
+    /// Lives next to `purchase` so the conversion is obvious in
+    /// review.
+    private func packageFor(_ plan: PurchasePlan) -> Package? {
+        switch plan {
+        case .annual:  return annualPackage
+        case .monthly: return monthlyPackage
         }
     }
 
@@ -321,23 +386,28 @@ final class StoreManager {
 
     // MARK: - Internals
 
-    /// Pulls the current offering from RevenueCat and binds the
-    /// annual package. Best-effort — if the network is unavailable
-    /// or the RC dashboard hasn't been configured yet we leave
-    /// `package` at its previous value (nil on first launch).
-    /// Called from `load()` and again on-demand from `purchase()`.
+    /// Pulls the current offering from RevenueCat and binds both
+    /// the annual and monthly packages. Best-effort — if the network
+    /// is unavailable or the RC dashboard hasn't been fully
+    /// configured yet, we leave each package at its previous value
+    /// (nil on first launch). Called from `load()` and again
+    /// on-demand from `purchase()` to self-heal flaky first-launch
+    /// fetches.
+    ///
+    /// Each package binds independently: if the dashboard has the
+    /// annual package wired up but not yet the monthly (e.g. during
+    /// the rollout window when monthly was added), the annual still
+    /// loads and the paywall just shows the yearly card alone. The
+    /// PaywallView checks for nil-package before rendering each
+    /// option.
     private func fetchOffering() async {
         do {
             let offerings = try await Purchases.shared.offerings()
-            if let current = offerings.current {
-                // Prefer the canonical `.annual` slot — the RC
-                // dashboard exposes one; if Amble's offering doesn't
-                // mark a package as annual, take the first available
-                // package as a graceful fallback.
-                package = current.annual ?? current.availablePackages.first
-            }
+            guard let current = offerings.current else { return }
+            annualPackage = current.annual
+            monthlyPackage = current.monthly
         } catch {
-            // Leave `package` as-is. Caller handles the nil case.
+            // Leave packages as-is. Caller handles the nil cases.
         }
     }
 

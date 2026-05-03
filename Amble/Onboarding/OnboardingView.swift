@@ -158,7 +158,7 @@ struct OnboardingView: View {
         case .notify:   StepNotify(palette: palette, type: type, scale: scale,
                                    notifications: notifications)
         case .done:     StepDone(state: s, palette: palette, type: type, scale: scale)
-        case .paywall:  StepPaywall(state: s, palette: palette, type: type, scale: scale,
+        case .paywall:  StepPaywall(palette: palette, type: type, scale: scale,
                                     store: store, onFinish: finish)
         }
     }
@@ -166,31 +166,39 @@ struct OnboardingView: View {
     // MARK: Primary button
     @ViewBuilder
     private func bottomButton(palette: Palette, type: Typography, scale: Double) -> some View {
-        let label: String = {
-            switch s.step {
-            case .welcome:  return "Get started"
-            case .contact:  return "Continue"
-            // Permission priming steps: always "Continue" regardless
-            // of the determination state. Apple App Review (Submission
-            // 98bfe2fa, April 28 2026) flagged the previous "Share my
-            // steps" / "Share my location" / "Yes, please" labels —
-            // combined with the "Maybe later" skip option below — as
-            // pre-empting the user's permission decision in our own
-            // UI before the iOS system dialog. Plain "Continue" is
-            // neutral, iOS-standard, and lets the brand voice live
-            // in the screen explainer text above the button rather
-            // than on the CTA itself.
-            case .location: return "Continue"
-            case .health:   return "Continue"
-            case .notify:   return "Continue"
-            case .done:    return "Almost done"
-            case .paywall: return store.hasAccess ? "Start walking" : "Start 7-day free trial"
-            default:       return "Continue"
-            }
-        }()
+        // The paywall step owns its own CTAs (the two-plan chooser
+        // — yearly and monthly buttons live inside StepPaywall
+        // itself). Rendering an additional generic "Continue"
+        // button at the bottom of the onboarding flow would just
+        // add a third confusing primary action. Hide it.
+        if s.step == .paywall {
+            EmptyView()
+        } else {
+            let label: String = {
+                switch s.step {
+                case .welcome:  return "Get started"
+                case .contact:  return "Continue"
+                // Permission priming steps: always "Continue" regardless
+                // of the determination state. Apple App Review (Submission
+                // 98bfe2fa, April 28 2026) flagged the previous "Share my
+                // steps" / "Share my location" / "Yes, please" labels —
+                // combined with the "Maybe later" skip option below — as
+                // pre-empting the user's permission decision in our own
+                // UI before the iOS system dialog. Plain "Continue" is
+                // neutral, iOS-standard, and lets the brand voice live
+                // in the screen explainer text above the button rather
+                // than on the CTA itself.
+                case .location: return "Continue"
+                case .health:   return "Continue"
+                case .notify:   return "Continue"
+                case .done:    return "Almost done"
+                default:       return "Continue"
+                }
+            }()
 
-        PrimaryButton(title: label, palette: palette, type: type, scale: scale, enabled: canNext) {
-            advance()
+            PrimaryButton(title: label, palette: palette, type: type, scale: scale, enabled: canNext) {
+                advance()
+            }
         }
     }
 
@@ -243,40 +251,12 @@ struct OnboardingView: View {
                 advanceStep()
             }
             return
-        case .paywall:
-            if store.hasAccess {
-                finish()
-            } else {
-                Task {
-                    let outcome = await store.purchase()
-                    switch outcome {
-                    case .granted:
-                        finish()
-                    case .cancelled:
-                        // User dismissed the StoreKit sheet. Stay on
-                        // the paywall — they can tap again whenever
-                        // they're ready. Crucially we do NOT fall
-                        // through to the DEBUG escape hatch here:
-                        // an active cancel is the user telling us
-                        // "not now," not a configuration failure.
-                        break
-                    case .failed:
-                        #if DEBUG
-                        // Dev escape hatch: StoreKit testing can silently no-op in
-                        // the simulator if the scheme's StoreKit config isn't loaded
-                        // (e.g. when launched via `simctl launch` instead of ⌘R,
-                        // or if there's no signed-in test account), and on a real
-                        // device this can fire if the RevenueCat dashboard isn't
-                        // fully wired up yet. Let the dev proceed so they can test
-                        // the rest of the app — never reachable in a Release build.
-                        print("[Amble] Purchase failed; granting DEBUG access to continue onboarding.")
-                        store.isDebugUnlocked = true
-                        finish()
-                        #endif
-                    }
-                }
-            }
-            return
+        // .paywall is intentionally absent — StepPaywall owns its
+        // own CTAs (yearly + monthly buttons) and calls `onFinish`
+        // directly when a purchase grants access. The bottom-of-
+        // flow button is hidden during the paywall step (see
+        // bottomButton above), so there's no advance() entry path
+        // from the paywall that needs handling here.
         default:
             advanceStep()
         }
@@ -1498,7 +1478,6 @@ private struct StepDone: View {
 
 // MARK: Step — Paywall (the ADDITIONAL screen at the end)
 private struct StepPaywall: View {
-    @Bindable var state: OnboardingState
     let palette: Palette
     let type: Typography
     let scale: Double
@@ -1525,7 +1504,7 @@ private struct StepPaywall: View {
                     .multilineTextAlignment(.center)
                     .lineSpacing(2)
 
-                Text("Then \(store.priceDisplay) a year, or about \(store.monthlyEquivalent) a month. Cancel anytime.")
+                Text("Pick the plan that suits you. Cancel any time.")
                     .font(type.body(18 * scale, weight: .medium))
                     .foregroundStyle(palette.ink2)
                     .multilineTextAlignment(.center)
@@ -1538,22 +1517,41 @@ private struct StepPaywall: View {
 
             Spacer(minLength: 0)
 
+            // Plan chooser. Yearly card carries the trial promise
+            // because the App Store Connect product has the 7-day
+            // intro offer attached; monthly does not (Apple gates
+            // the trial to one redemption per subscription group,
+            // so doubling it on monthly would just split the same
+            // single offer between products and confuse users).
+            VStack(spacing: 12) {
+                yearlyButton
+                monthlyButton
+            }
+            .opacity(appear ? 1 : 0)
+            .offset(y: appear ? 0 : 14)
+            .animation(.easeOut(duration: 0.55).delay(0.1), value: appear)
+
             PaywallLegal(palette: palette, type: type, scale: scale,
-                         priceDisplay: store.priceDisplay,
-                         onRestore: {
-                             Task {
-                                 let outcome = await store.restore()
-                                 if outcome != .restored {
-                                     restoreOutcome = outcome
-                                 }
-                             }
-                         })
-                .padding(.bottom, 28)
+                         store: store,
+                         onRestore: handleRestore)
+                .padding(.top, 18)
+                .padding(.bottom, 12)
                 .opacity(appear ? 1 : 0)
                 .animation(.easeOut(duration: 0.5).delay(0.2), value: appear)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onAppear { appear = true }
+        .onAppear {
+            appear = true
+            // Edge case: a returning user who reaches this step
+            // already has access (e.g. they reinstalled and a
+            // background Restore silently succeeded, or they're
+            // a Family Sharing dependent already covered). Skip
+            // the paywall straight to the home screen rather than
+            // making them tap something redundant.
+            if store.hasAccess {
+                onFinish()
+            }
+        }
         .alert(
             restoreOutcome?.alertTitle ?? "",
             isPresented: Binding(
@@ -1567,15 +1565,159 @@ private struct StepPaywall: View {
             Text(outcome.alertMessage)
         }
     }
+
+    // MARK: - Buttons
+
+    /// Primary CTA. The trial promise lives here, where it's most
+    /// motivating — the user is one tap from starting walks.
+    private var yearlyButton: some View {
+        Button {
+            Haptics.medium()
+            handlePurchase(.annual)
+        } label: {
+            VStack(spacing: 4) {
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    Text("Start 7-day free trial")
+                        .font(type.display(20 * scale, weight: .bold))
+                        .kerning(-0.2)
+                    if let saving = store.yearlyDiscountLabel {
+                        Text(saving)
+                            .font(type.body(13 * scale, weight: .bold))
+                            .foregroundStyle(.white.opacity(0.85))
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 3)
+                            .background(
+                                Capsule().fill(Color.white.opacity(0.18))
+                            )
+                    }
+                }
+                Text("Then \(store.annualPrice) a year · \(store.annualMonthlyEquivalent) a month")
+                    .font(type.body(14 * scale, weight: .medium))
+                    .foregroundStyle(.white.opacity(0.85))
+            }
+            .foregroundStyle(.white)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 18)
+            .background(
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(palette.accent)
+            )
+            .shadow(color: palette.accent.opacity(0.4), radius: 16, x: 0, y: 6)
+        }
+        .buttonStyle(.pressable)
+        .disabled(store.purchasing)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Start 7-day free trial. Then \(store.annualPrice) a year, about \(store.annualMonthlyEquivalent) a month.")
+        .accessibilityHint("Subscribes you yearly with a 7-day free trial.")
+        .accessibilityAddTraits(.isButton)
+    }
+
+    /// Secondary CTA. No trial — straight to monthly billing.
+    /// Visually quieter than the yearly so the recommended path
+    /// reads first.
+    private var monthlyButton: some View {
+        Button {
+            Haptics.medium()
+            handlePurchase(.monthly)
+        } label: {
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Text("Subscribe monthly")
+                    .font(type.display(18 * scale, weight: .semibold))
+                    .kerning(-0.2)
+                Spacer()
+                Text("\(store.monthlyPrice) a month")
+                    .font(type.body(15 * scale, weight: .medium))
+            }
+            .foregroundStyle(palette.ink)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 18)
+            .padding(.horizontal, 18)
+            .background(
+                RoundedRectangle(cornerRadius: 24, style: .continuous)
+                    .fill(palette.card)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 24, style: .continuous)
+                            .stroke(Color.black.opacity(0.08), lineWidth: 1)
+                    )
+            )
+        }
+        .buttonStyle(.pressable)
+        .disabled(store.purchasing)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Subscribe monthly, \(store.monthlyPrice) a month")
+        .accessibilityHint("Subscribes you monthly. No free trial.")
+        .accessibilityAddTraits(.isButton)
+    }
+
+    // MARK: - Handlers
+
+    private func handlePurchase(_ plan: StoreManager.PurchasePlan) {
+        Task {
+            let outcome = await store.purchase(plan)
+            switch outcome {
+            case .granted:
+                onFinish()
+            case .cancelled:
+                // User dismissed the StoreKit sheet — stay on the
+                // paywall, they can tap again or pick the other
+                // plan. Critically we do NOT fall through to the
+                // DEBUG escape hatch here: a cancel is "not now,"
+                // not a configuration failure.
+                break
+            case .failed:
+                #if DEBUG
+                // Dev escape hatch: StoreKit testing can silently no-op
+                // in the simulator if the scheme's StoreKit config
+                // isn't loaded (e.g. when launched via `simctl launch`
+                // instead of ⌘R, or if there's no signed-in test
+                // account), and on a real device this can fire if the
+                // RevenueCat dashboard isn't fully wired up yet. Let
+                // the dev proceed so they can test the rest of the
+                // app — never reachable in a Release build.
+                print("[Amble] Purchase failed; granting DEBUG access to continue onboarding.")
+                store.isDebugUnlocked = true
+                onFinish()
+                #endif
+            }
+        }
+    }
+
+    private func handleRestore() {
+        Task {
+            let outcome = await store.restore()
+            if outcome != .restored {
+                restoreOutcome = outcome
+            }
+            // On `.restored`, hasAccess flipped true; the parent
+            // OnboardingFlow doesn't auto-advance off this step,
+            // so we explicitly finish here.
+            if outcome == .restored {
+                onFinish()
+            }
+        }
+    }
 }
 
-/// Legal footer required by Apple Guideline 3.1.2 for auto-renewing subscriptions:
-/// renewal disclosure, Terms, Privacy, and Restore. Kept small but present.
+/// Legal footer required by Apple Guideline 3.1.2 for auto-renewing
+/// subscriptions: renewal disclosure for every plan offered, Terms,
+/// Privacy, and Restore. With two plans (yearly + monthly) the
+/// disclosure has to enumerate both — Apple specifically requires
+/// each subscription's price + period to be disclosed adjacent to
+/// the buy button.
 struct PaywallLegal: View {
     let palette: Palette
     let type: Typography
     let scale: Double
-    let priceDisplay: String
+    /// Read directly so we can render live prices for both the
+    /// yearly and monthly products. Falls back to the hard-coded
+    /// defaults in StoreManager if RevenueCat hasn't returned the
+    /// prices yet.
+    let store: StoreManager
+    /// `true` only on the onboarding paywall, where the user is
+    /// almost certainly trial-eligible and the yearly button
+    /// promises a 7-day free trial. Adds the "payment after trial"
+    /// preamble required by App Review when a free trial is
+    /// advertised. The trial-end PaywallView passes `false`.
     var mentionsTrial: Bool = true
     let onRestore: () -> Void
 
@@ -1590,11 +1732,19 @@ struct PaywallLegal: View {
     static let termsURL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
     static let privacyURL = URL(string: "https://antoniobaltic.xyz/amble-privacy.html")!
 
+    private var disclosure: String {
+        let yearly = store.annualPrice
+        let monthly = store.monthlyPrice
+        let core = "Yearly auto-renews at \(yearly) a year. Monthly auto-renews at \(monthly) a month. Cancel anytime in your phone settings."
+        if mentionsTrial {
+            return "Payment charged to your Apple Account at the end of the free trial. \(core)"
+        }
+        return core
+    }
+
     var body: some View {
         VStack(spacing: 14) {
-            Text(mentionsTrial
-                 ? "Payment charged to your Apple Account at the end of the trial. Auto-renews yearly at \(priceDisplay) until cancelled in your phone settings."
-                 : "Auto-renews yearly at \(priceDisplay) until cancelled in your phone settings.")
+            Text(disclosure)
                 .font(type.body(11 * scale, weight: .medium))
                 .foregroundStyle(palette.ink2.opacity(0.7))
                 .multilineTextAlignment(.center)
