@@ -70,10 +70,6 @@ it's a public app-specific key (`appl_…`) designed to ship in client binaries.
 - Privacy-first: everything stays on-device except the anonymous purchase
   receipt that flows through RevenueCat. No accounts, no email, no analytics.
 
-## Status
-
-Pre-launch. App Store metadata is filled in; first submission pending.
-
 ---
 
 © 2026 Antonio Baltic
