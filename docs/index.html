@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Amble</title>
+  <meta name="description" content="Privacy policy for the Amble iOS app by Antonio Baltic. Local-only storage, no analytics, no advertising, no tracking.">
+  <meta name="author" content="Antonio Baltic">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://antoniobaltic.github.io/amble_app/">
+  <meta name="theme-color" content="#F5F0E6">
+
+  <meta property="og:title" content="Privacy Policy — Amble">
+  <meta property="og:description" content="Privacy policy for the Amble iOS app. Local-only storage, no analytics, no advertising, no tracking.">
+  <meta property="og:url" content="https://antoniobaltic.github.io/amble_app/">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Fraunces for display headings; a serif fallback covers the
+       brief moment before the webfont loads. Body text uses the
+       system UI stack for crisp, familiar reading on any device. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+
+  <!-- Sage rounded-square "A" favicon, echoing the app icon. -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%235C7A5A'/%3E%3Ctext x='50' y='73' font-family='Georgia,serif' font-size='66' font-weight='600' fill='%23F5F0E6' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --cream:   #F5F0E6;
+      --card:    #FCF9F1;
+      --ink:     #1F2A24;
+      --ink2:    #5A6560;
+      --sage:    #5C7A5A;
+      --sage-soft: rgba(92, 122, 90, 0.10);
+      --rule:    rgba(31, 42, 36, 0.10);
+      --maxw:    720px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: var(--sage);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 0 0 12px 0;
+      z-index: 10;
+      font-weight: 600;
+    }
+    .skip-link:focus { left: 0; }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Brand mark ── */
+    .mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 48px;
+    }
+    .mark-glyph {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--sage);
+      color: var(--cream);
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .mark-name {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: 22px;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Hero ── */
+    .hero { padding: 44px 0 36px; }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--sage);
+      margin: 0 0 14px;
+    }
+    h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: clamp(38px, 7vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+    .app-sub {
+      font-family: "Fraunces", Georgia, serif;
+      font-style: italic;
+      font-size: 20px;
+      color: var(--ink2);
+      margin: 0 0 28px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .meta-cell {
+      background: var(--card);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 12px 18px;
+    }
+    .meta-label {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink2);
+      margin-bottom: 3px;
+    }
+    .meta-value {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ── At a glance ── */
+    .tldr {
+      background: var(--sage-soft);
+      border: 1px solid rgba(92, 122, 90, 0.22);
+      border-radius: 22px;
+      padding: 28px 30px;
+      margin: 8px 0 48px;
+    }
+    .tldr-label {
+      display: block;
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: 22px;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .tldr ul {
+      margin: 0 0 14px;
+      padding-left: 22px;
+    }
+    .tldr li { margin-bottom: 12px; }
+    .tldr li:last-child { margin-bottom: 0; }
+    .tldr p {
+      margin: 0;
+      color: var(--ink2);
+      font-size: 16px;
+    }
+    .tldr li::marker { color: var(--sage); }
+
+    /* ── Sections ── */
+    section { margin-bottom: 44px; }
+    .section-title {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 600;
+      font-size: 27px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin: 0 0 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-num {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--sage);
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: 0.04em;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 28px 0 10px;
+    }
+    p { margin: 0 0 16px; }
+    ul:not(.tldr ul) { padding-left: 22px; }
+    li { margin-bottom: 9px; }
+    li::marker { color: var(--sage); }
+
+    a {
+      color: var(--sage);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+    }
+    a:hover { color: var(--ink); }
+
+    strong { font-weight: 700; color: var(--ink); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      margin-top: 56px;
+      padding: 44px 0 64px;
+    }
+    .quote {
+      font-family: "Fraunces", Georgia, serif;
+      font-style: italic;
+      font-size: 21px;
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0 0 18px;
+    }
+    .quote cite {
+      display: block;
+      font-style: normal;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink2);
+      margin-top: 10px;
+    }
+    .copy {
+      font-size: 14px;
+      color: var(--ink2);
+    }
+
+    @media (max-width: 520px) {
+      body { font-size: 17px; }
+      .tldr { padding: 24px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#policy" class="skip-link">Skip to content</a>
+
+  <div class="wrap">
+
+    <div class="mark">
+      <span class="mark-glyph" aria-hidden="true">A</span>
+      <span class="mark-name">Amble</span>
+    </div>
+
+    <header class="hero">
+      <p class="eyebrow">Privacy</p>
+      <h1>Privacy Policy</h1>
+      <p class="app-sub">Amble — a walking companion app</p>
+      <div class="meta">
+        <div class="meta-cell">
+          <span class="meta-label">Last updated</span>
+          <span class="meta-value">May 3, 2026</span>
+        </div>
+        <div class="meta-cell">
+          <span class="meta-label">Jurisdiction</span>
+          <span class="meta-value">International (GDPR · CCPA)</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="policy">
+
+      <aside class="tldr">
+        <span class="tldr-label">At a glance</span>
+        <ul>
+          <li><strong>Amble does not have user accounts.</strong> You don't sign up, sign in, or share an email with us.</li>
+          <li><strong>Almost everything stays on your iPhone.</strong> Your name, your daily goal, your walks, your emergency contact — all of it lives only on your device.</li>
+          <li><strong>Your step data comes from Apple Health, and we only read it.</strong> We never write to Apple Health and never share your steps with anyone.</li>
+          <li><strong>Your location is used in exactly one situation: when you press SOS.</strong> And it goes to the emergency contact you chose, in a text message you can read before you send it. We never see it ourselves.</li>
+          <li><strong>We don't run advertising, we don't use tracking SDKs, and we don't sell data.</strong> Ever.</li>
+        </ul>
+        <p>If those bullet points cover what you wanted to know, you can stop here. The rest of this page explains the details.</p>
+      </aside>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">01</span><span>Who we are</span></h2>
+        <p>Amble is a walking companion app made by Antonio Baltic. This privacy policy covers the Amble iOS app (the "App") and explains what information the App handles, where it goes, and what your choices are.</p>
+        <p>If anything below is unclear, write to <a href="mailto:antoniobaltic@icloud.com">antoniobaltic@icloud.com</a> and a real person will reply.</p>
+      </section>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">02</span><span>Information the App handles</span></h2>
+
+        <h3>2.1 What you give us directly</h3>
+        <p>When you set up Amble, the App asks you for:</p>
+        <ul>
+          <li><strong>Your first name</strong> — used only to greet you on the home screen.</li>
+          <li><strong>Your age range, mobility, activity level, and (optionally) your gender</strong> — used once, locally on your device, to suggest a sensible daily step goal. None of this is transmitted off your device.</li>
+          <li><strong>Your daily step goal</strong> — stored on your device.</li>
+          <li><strong>An emergency contact</strong> — name, relationship, and phone number. You can pick this from your iPhone's contacts (we only see the person you select, not your contact list) or type it in by hand.</li>
+          <li><strong>Notification preferences and reminder time</strong> — stored on your device and used by your iPhone to schedule a local reminder.</li>
+        </ul>
+        <p>All of the above is stored only in Amble's local storage on your iPhone. None of it is sent to Amble servers, because Amble does not have servers.</p>
+
+        <h3>2.2 What the App reads from your iPhone with your permission</h3>
+        <p>With permissions you grant through the standard iOS dialogs, the App reads:</p>
+        <ul>
+          <li><strong>Step counts from Apple Health</strong> (HealthKit). The App reads daily steps and per-day step history so it can show your progress and your week. The App <strong>never writes</strong> anything to Apple Health.</li>
+          <li><strong>Live motion data</strong> (CoreMotion / pedometer). When you start a tracked walk, the App uses the iPhone's pedometer to count steps for that walk in real time. This data is processed locally and is not stored beyond the walk session.</li>
+          <li><strong>Your location, one time, when you press SOS</strong> (CoreLocation). Pressing SOS asks your iPhone for your current location. Amble drafts a text message to your emergency contact that includes a link to the location, then hands the message to your iPhone's Messages app. You see the message and tap Send (or cancel) yourself. Amble does not store your location, does not transmit it to any server, and does not use it for anything other than that single message.</li>
+          <li><strong>A single contact you choose</strong> (Contacts). When you pick an emergency contact, the App uses iOS's standard contact picker. The App receives only the contact you select — name and phone number — and nothing else from your contact list.</li>
+        </ul>
+        <p>You can change or revoke any of these permissions in iOS Settings or, for Health, in the Apple Health app.</p>
+
+        <h3>2.3 What the App stores on your device</h3>
+        <p>Everything the App needs to work day to day is stored locally:</p>
+        <ul>
+          <li>Your profile (name, goal, contact, preferences)</li>
+          <li>Your tracked walks (start time, duration, steps)</li>
+          <li>Your daily-reflection reading position</li>
+          <li>A small number of engagement counters (e.g. how many days you've hit your goal) that we use to decide when, if ever, to ask you to rate the App on the App Store</li>
+        </ul>
+        <p>This data does not leave your iPhone. It is removed when you uninstall the App, or when you tap <strong>Start over</strong> in Settings.</p>
+
+        <h3>2.4 What we do <em>not</em> collect</h3>
+        <p>To be specific, Amble does <strong>not</strong> collect or store:</p>
+        <ul>
+          <li>Your last name, email address, or any account information</li>
+          <li>Your full contact list</li>
+          <li>Your photos, microphone, camera, or files</li>
+          <li>Your location, except in the SOS case described above</li>
+          <li>Your IP address (we don't run a server that could log it)</li>
+          <li>Any analytics, behavioural, or tracking data</li>
+          <li>Any data about children under 13</li>
+        </ul>
+        <p>There are no third-party advertising SDKs, analytics SDKs, or trackers embedded in the App.</p>
+      </section>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">03</span><span>Where information goes</span></h2>
+
+        <h3>3.1 Apple</h3>
+        <ul>
+          <li><strong>HealthKit and Apple Health.</strong> Apple manages your health data on your device. Amble reads from it with your permission. Apple's privacy practices for Health are described in Apple's own privacy policy.</li>
+          <li><strong>App Store and StoreKit.</strong> When you start a free trial or purchase a subscription, the transaction is processed by Apple, not by Amble. Apple shares with us a confirmation that you have an active subscription. Apple does not give us your name, email, or payment details.</li>
+          <li><strong>Push notification system and the Messages app.</strong> When the App schedules a reminder or sends an SOS text, those use Apple's standard system services. Amble does not see the messages after they're handed off.</li>
+        </ul>
+
+        <h3>3.2 RevenueCat</h3>
+        <p>We use <strong>RevenueCat</strong>, a subscription-management service, to keep track of whether you have an active Amble subscription. RevenueCat receives the anonymous purchase receipt that Apple issues when you subscribe, plus an anonymous identifier the SDK generates for your install. RevenueCat does not receive your name, email, or payment details — Apple does not share those with us or with RevenueCat.</p>
+        <p>If you tap an Apple Search Ads campaign and install Amble as a result, the RevenueCat SDK also receives an anonymous attribution token generated by Apple's AdServices framework. This token tells us which ad campaign drove the install so we can measure which campaigns reach the right people. The token does not identify you personally, is generated by Apple's privacy-preserving framework (which is why iOS does not show a tracking-permission prompt for it), and is not shared with anyone beyond Apple, us, and RevenueCat.</p>
+        <p>You can read RevenueCat's privacy policy at <a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">revenuecat.com/privacy</a>.</p>
+
+        <h3>3.3 Your emergency contact</h3>
+        <p>When (and only when) you press the SOS button and confirm sending the message, the contact you previously chose receives a text message from your iPhone that contains a short alert and a link to your current location. The message is sent through your iPhone's standard Messages app, just like any text you send. Amble itself never sees the message.</p>
+
+        <h3>3.4 Nobody else</h3>
+        <p>Amble does not share, sell, rent, or trade any information with any third party for advertising, marketing, or analytics. There are no exceptions.</p>
+      </section>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">04</span><span>How we use the information</span></h2>
+        <p>We use the small amount of information the App handles only for these purposes:</p>
+        <ul>
+          <li>To run the App's features: showing your steps, your walks, your daily goal, the daily reflection, and the SOS/Call buttons.</li>
+          <li>To send the daily reminder you opted into (via your iPhone's local notifications — nothing leaves your device).</li>
+          <li>To decide whether to show you the standard iOS "rate this app" prompt at a helpful moment, capped at three prompts per year by Apple.</li>
+          <li>To verify whether you have an active Amble subscription, via RevenueCat.</li>
+        </ul>
+        <p>That's it. We don't profile you, target ads at you, or build any model of you.</p>
+      </section>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">05</span><span>Storage, security, and retention</span></h2>
+        <ul>
+          <li><strong>Local data</strong> is stored using iOS's standard, encrypted-on-device storage, protected by your iPhone's passcode/Face ID/Touch ID.</li>
+          <li><strong>Subscription state</strong> held by RevenueCat is governed by RevenueCat's own security and retention practices.</li>
+          <li>We retain local data only as long as the App is installed. Removing the App removes the data. Tapping <strong>Start over</strong> in Settings removes most of it immediately.</li>
+          <li>Apple retains your purchase history per its own policies, regardless of whether the App is installed.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">06</span><span>Your choices and rights</span></h2>
+        <p>Because Amble keeps almost everything on your device, controlling your data is mostly a matter of using your iPhone:</p>
+        <ul>
+          <li><strong>Stop sharing health data with Amble:</strong> Apple Health → your profile → Apps → Amble → turn off the toggles.</li>
+          <li><strong>Stop sharing motion / location / contacts / notifications with Amble:</strong> iOS Settings → Amble.</li>
+          <li><strong>Delete all of your Amble data:</strong> uninstall the App, or open Settings inside the App and tap <strong>Start over</strong>.</li>
+          <li><strong>Manage or cancel your subscription:</strong> iOS Settings → your Apple ID → Subscriptions, or <strong>Settings → Manage subscription</strong> inside the App.</li>
+        </ul>
+        <p>If you are in the European Economic Area, the United Kingdom, or Switzerland, you have the rights granted by the GDPR (and equivalent laws), including the rights to access, correct, delete, restrict, and port the information we hold about you. Because Amble does not maintain user accounts or central databases, the practical answer to almost every one of these requests is: the information is on your iPhone, controlled by you, and removed when you uninstall the App or tap <strong>Start over</strong>.</p>
+        <p>If you are a California resident, the CCPA gives you the right to know what personal information businesses collect about you, the right to delete it, and the right to opt out of its sale. Amble does not sell personal information.</p>
+        <p>If you'd still like to make a formal request under any of these laws, write to <a href="mailto:antoniobaltic@icloud.com">antoniobaltic@icloud.com</a> and we'll respond.</p>
+      </section>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">07</span><span>Children</span></h2>
+        <p>Amble is designed for adults, primarily for older adults. The App is not directed to children under 13, and we do not knowingly collect information from anyone under 13. If you believe a child has used the App and provided information to it, contact <a href="mailto:antoniobaltic@icloud.com">antoniobaltic@icloud.com</a> and we will help remove it.</p>
+      </section>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">08</span><span>International users</span></h2>
+        <p>Amble is designed and operated from outside the United States. Apple and RevenueCat may process subscription-related information in the United States or other countries. By using the App, you understand that the limited subscription information described above may be processed outside your home country, subject to those companies' own protections.</p>
+      </section>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">09</span><span>Changes to this policy</span></h2>
+        <p>If we change this policy, we'll update the date at the top and, for significant changes, surface a notice in the App on your next launch. The current version is always available at this page.</p>
+      </section>
+
+      <section>
+        <h2 class="section-title"><span class="section-num">10</span><span>Contact us</span></h2>
+        <p>For privacy questions, requests, or anything else, write to:</p>
+        <p><a href="mailto:antoniobaltic@icloud.com">antoniobaltic@icloud.com</a></p>
+        <p>We aim to respond within seven days.</p>
+      </section>
+
+    </main>
+
+    <footer>
+      <blockquote class="quote">
+        Not until we are lost do we begin to understand ourselves.
+        <cite>— Henry David Thoreau</cite>
+      </blockquote>
+      <p class="copy">© 2026 Antonio Baltic</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
