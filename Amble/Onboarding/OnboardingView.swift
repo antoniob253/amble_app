@@ -1726,11 +1726,12 @@ struct PaywallLegal: View {
     // app-specific provisions. Override here if we ever add a custom
     // EULA in App Store Connect.
     // Privacy URL hosts our own policy (Apple does not provide a
-    // default for privacy). Update both the App Store Connect
-    // "Privacy Policy URL" field and this constant in lockstep if
-    // the page ever moves.
+    // default for privacy). Served via GitHub Pages from the
+    // amble_app repo's /docs folder. Update both the App Store
+    // Connect "Privacy Policy URL" field and this constant in
+    // lockstep if the page ever moves.
     static let termsURL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
-    static let privacyURL = URL(string: "https://antoniobaltic.xyz/amble-privacy.html")!
+    static let privacyURL = URL(string: "https://antoniob253.github.io/amble_app/")!
 
     private var disclosure: String {
         let yearly = store.annualPrice
